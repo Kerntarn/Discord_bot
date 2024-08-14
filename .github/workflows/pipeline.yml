@@ -1,0 +1,36 @@
+name: Discord-Bot-CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    
+    - uses: actions/checkout@v4
+
+    - name: Create env variebles
+      run: touch .env
+           echo "${{ secrets.CLIENTID }} >> .env
+           echo "${{ secrets.GUILDID }} >> .env
+           echo "${{ secrets.TOKEN }} >> .env
+           cat .env
+
+    - name: Delete old container
+      run: docker rm -f discord-bot || true
+
+    - name: Delete old images
+      run: docker image prune -f --filter "label=bot-image" || true
+
+    - name: Build the Docker image
+      run: docker build --rm -t bot-iamge .
+
+    - name: Build container
+      run: docker run -d \
+           --name discord-bot \
+           bot-image
