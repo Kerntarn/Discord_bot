@@ -30,7 +30,7 @@ jobs:
     - name: Build the Docker image
       run: docker build --rm -t bot-iamge .
 
-    - name: Build container
+    - name: run container
       run: docker run -d \
            --name discord-bot \
            bot-image
