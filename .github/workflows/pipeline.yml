@@ -19,7 +19,7 @@ jobs:
            echo CLIENTID=${{ secrets.CLIENTID }} >> .env
            echo GUILDID=${{ secrets.GUILDID }} >> .env
            echo TOKEN=${{ secrets.TOKEN }} >> .env
-           cat .env
+           echo .env
 
     - name: Delete old container
       run: docker rm -f discord-bot || true
