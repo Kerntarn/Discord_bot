@@ -28,9 +28,9 @@ jobs:
       run: docker image prune -f --filter "label=bot-image" || true
 
     - name: Build the Docker image
-      run: docker build --rm -t bot-iamge .
+      run: docker build --rm -t bot-image .
 
-    - name: run container
+    - name: Run container
       run: docker run -d \
            --name discord-bot \
            bot-image
