@@ -14,21 +14,21 @@ jobs:
     
     - uses: actions/checkout@v4
 
-    - name: Create env variebles
-      run: touch .env
-           echo CLIENTID=${{ secrets.CLIENTID }} >> .env
-           echo GUILDID=${{ secrets.GUILDID }} >> .env
-           echo TOKEN=${{ secrets.TOKEN }} >> .env
-           cat .env
+    # - name: Create env variebles
+    #   run: touch .env
+    #        echo CLIENTID=${{ secrets.CLIENTID }} >> .env
+    #        echo GUILDID=${{ secrets.GUILDID }} >> .env
+    #        echo TOKEN=${{ secrets.TOKEN }} >> .env
+    #        cat .env
 
     - name: Delete old container
       run: docker rm -f discord-bot || true
 
-    - name: Delete old images
-      run: docker image prune -f --filter "label=bot-image" || true
+    # - name: Delete old images
+    #   run: docker image prune -f --filter "label=bot-image" || true
 
-    - name: Build the Docker image
-      run: docker build --rm -t bot-image .
+    # - name: Build the Docker image
+    #   run: docker build --rm -t bot-image .
 
     - name: Run container
       run: docker run -d --name discord-bot bot-image
