@@ -27,7 +27,7 @@ jobs:
     - name: Delete old images
       run: docker image prune -f --filter "label=bot-image" || true
 
-    - name: Build the Docker image
+    - name: Build image
       run: docker build --rm -t bot-image .
 
     - name: Run container
